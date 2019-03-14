@@ -51,3 +51,8 @@ WHERE MG.genre="Horror";
 
 
 ##8. What are the names of every actor who has appeared in a movie directed by Christopher Nolan?
+SELECT A.first_name, A.last_name, M.name as movie_name, M.year, CONCAT(D.first_name, ' ',D.last_name) as Director  FROM 
+actors A JOIN roles  R on A.id=R.actor_id JOIN movies M on R.movie_id=M.id 
+JOIN movies_directors MD on M.id=MD.movie_id JOIN directors D on MD.director_id=D.id
+WHERE D.first_name="Christopher" && D.last_name="Nolan";
+

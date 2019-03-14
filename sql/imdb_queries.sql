@@ -33,4 +33,8 @@ WHERE D.first_name="Clint" && D.last_name="Eastwood";
 
 
 
-##
+##6. What are the names of all movies Clint Eastwood has directed?
+SELECT M.name FROM movies M JOIN movies_directors  MD on MD.movie_id=M.id JOIN directors D 
+on D.id=MD.director_id 
+WHERE D.first_name="Clint" && D.last_name="Eastwood";
+

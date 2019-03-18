@@ -5,7 +5,7 @@
  		password varchar(250),
  		fullname varchar(250),
  		dob date,
- 		primary key (id),
+ 		primary key (id)
  		 );
 
 

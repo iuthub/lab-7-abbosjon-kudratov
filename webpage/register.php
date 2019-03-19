@@ -81,17 +81,12 @@ $isFormError= $isNameError || $isMailError || $isPasswordError;
 	<?php }
 if($isPost && !$isFormError)
 	{
-		include("connection.php");
+		require("connection.php");
 
 		$dob="2008-10-10";
-		$stmt=$blogg->prepare("INSERT INTO users (username, email, password, fullname, dob) VALUES(?,?,?,?,?)");
-		$stmt->bind_param(1,$username);
-		$stmt->bind_param(2,$email);
-		$stmt->bind_param(3,$pwd);
-		$stmt->bind_param(4,$fullname);
-		$stmt->bind_param(5,$dob);
+		$blogg->exec("INSERT INTO users (username, email, password, fullname, dob) VALUES($username, $email, $password, $fullname, $dob)");
+		
 
-		$stmt->execute();
 		
 
 		//$stmt->execute(array("{$username}", "{$email}", "{$pwd}","{$fullname}", "2018-03-03",")"));

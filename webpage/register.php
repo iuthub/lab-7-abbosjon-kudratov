@@ -84,8 +84,19 @@ if($isPost && !$isFormError)
 		require("connection.php");
 
 		$dob="2008-10-10";
-		$blogg->exec("INSERT INTO users (username, email, password, fullname, dob) VALUES($username, $email, $password, $fullname, $dob)");
+		$inserQuery="INSERT INTO users (username, email, password, fullname, dob) VALUES('$username', '$email', '$pwd', '$fullname', '$dob')";
+		$smth=$blogg->exec($inserQuery);
+		?>
+		<script>
+			
+		<?php if($mth){
+			?>
+			alert("something123!!!");
+		<?php }
+		 ?>
+		</script>
 		
+		<?php
 
 		
 

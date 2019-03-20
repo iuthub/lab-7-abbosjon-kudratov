@@ -1,5 +1,5 @@
 <?php  
-
+# copyright © 2019 Abbosjon Kudratov
 include('connection.php');
 error_reporting(1);
 $username=$_REQUEST["username"];
@@ -84,32 +84,12 @@ if($isPost && !$isFormError)
 		require("connection.php");
 
 		$dob="2008-10-10";
-		$inserQuery="INSERT INTO users (username, email, password, fullname, dob) VALUES('$username', '$email', '$pwd', '$fullname', '$dob')";
-		$smth=$blogg->exec($inserQuery);
-		?>
-		<script>
-			
-		<?php if($mth){
-			?>
-			alert("something123!!!");
-		<?php }
-		 ?>
-		</script>
+		$insertQuery="INSERT INTO users (username, email, password, fullname, dob) VALUES('$username', '$email', '$pwd', '$fullname', '$dob')"; // try to avoid this weak style, 'cause  it's not safe about SQL injections :)
+		// $blogg->exec($insertQuery);  // no good style at all 
+
+		$insertQuery1=$blogg->prepare("INSERT INTO users (username, email, password, fullname, dob) VALUES(?, ?, ?, ?, '2008-10-10')");
+		$insertQuery1->execute(array($username, $email, $pwd, $fullname)); //a better and safe query
 		
-		<?php
-
-		
-
-		//$stmt->execute(array("{$username}", "{$email}", "{$pwd}","{$fullname}", "2018-03-03",")"));
-
-	//	$array = array(1, $username, $email, $pwd, $fullname,"2018-03-03");
-	//	$query= "INSERT INTO users VALUES (1,$username, $email, $pwd, $fullname, '2018-03-03')";
-
-	//	$stmt=$blogg->prepare($query);
-	//	$stmt-> execute();
-
-		
-
 
 	 	header('Location: index.php');
 	 } ?>
